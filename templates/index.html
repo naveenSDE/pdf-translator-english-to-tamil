@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>PDF Translator</title>
+</head>
+
+<body>
+
+<h2>Upload English PDF</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<input type="file" name="pdf" required>
+
+<button type="submit">
+Translate
+</button>
+
+</form>
+
+
+{% if translated_text %}
+
+<h3>Translated Text</h3>
+
+<p>{{ translated_text }}</p>
+
+<a href="{{ output_file }}" download>
+Download Translated PDF
+</a>
+
+{% endif %}
+
+</body>
+
+</html>

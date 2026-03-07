@@ -1,0 +1,4 @@
+Flask==3.0.2
+pypdf==4.2.0
+deep-translator==1.11.4
+fpdf==1.7.2
