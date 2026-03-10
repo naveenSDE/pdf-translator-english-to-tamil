@@ -4,6 +4,7 @@ import os
 from pdf_reader import extract_text
 from translator import translate_text
 from pdf_writer import create_pdf
+from speaker import speak_text
 
 app = Flask(__name__)
 
@@ -35,8 +36,12 @@ def index():
             # 2 translate
             translated_text = translate_text(text)
 
-            # 3 create translated pdf
+
+
+
+            # 4 create translated pdf
             output_file = create_pdf(translated_text)
+
 
     return render_template(
         "index.html",

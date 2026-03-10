@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
+
 <html>
 
 <head>
-<title>PDF Translator</title>
+    <title>PDF Translator</title>
 </head>
 
 <body>
@@ -11,28 +11,55 @@
 <h2>Upload English PDF</h2>
 
 <form method="POST" enctype="multipart/form-data">
-
-<input type="file" name="pdf" required>
-
-<button type="submit">
-Translate
-</button>
-
+    <input type="file" name="pdf" required>
+    <button type="submit">Translate</button>
 </form>
-
 
 {% if translated_text %}
 
 <h3>Translated Text</h3>
 
-<p>{{ translated_text }}</p>
+<p id="translated">{{ translated_text }}</p>
+
+<br>
+
+<button onclick="speakText()">🔊 Read Aloud</button>
+
+<br><br>
 
 <a href="{{ output_file }}" download>
-Download Translated PDF
+    Download Translated PDF
 </a>
+
+<br><br>
+
+<h3>Audio Version</h3>
+
+<audio controls>
+    <source src="{{ url_for('static', filename='voice.mp3') }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 {% endif %}
 
-</body>
+<script>
 
+function speakText() {
+
+    speechSynthesis.cancel();   // stop previous speech
+
+    let text = document.getElementById("translated").innerText;
+
+    let speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "ta-IN";
+    speech.rate = 0.7;   // slower speed
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+</script>
+
+</body>
 </html>
